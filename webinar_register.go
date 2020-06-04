@@ -5,9 +5,6 @@ import "fmt"
 const (
 	// RegisterForWebinarPath - v2 path for registering a user for a webinar
 	RegisterForWebinarPath = "/webinars/%d/registrants"
-
-	// ListRegistrantsPath - v2 path for listing panelists for a webinar
-	ListRegistrantsPath = "/webinars/%d/registrants"
 )
 
 // CustomQuestion is the type for custom questions on registration form
