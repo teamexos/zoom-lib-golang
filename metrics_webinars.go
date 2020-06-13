@@ -29,6 +29,7 @@ type WebinarMetric struct {
 
 // WebinarsMetricsOptions contains options for WebinarMetrics.
 type WebinarMetricsOptions struct {
+	Type          string `json:"type"`
 	From          string `json:"from"`
 	To            string `json:"to"`
 	PageSize      int    `json:"page_size"`
