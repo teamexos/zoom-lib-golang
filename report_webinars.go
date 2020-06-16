@@ -1,26 +1,30 @@
 // Report endpoints
 package zoom
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 const (
-	ParticipantReportPath = "/report/webinars/%d/participants"
+	ParticipantReportPath = "/report/webinars/%s/participants"
 )
 
 // WebinarParticipant represents a participant for a particular webinar
 type WebinarParticipant struct {
-	ID        string
-	UserID    string
-	Name      string
-	UserEmail string
-	JoinTime  Time
-	LeaveTime Time
-	Duration  int
+	ID        string `json:"id"`
+	UserID    string `json:"user_id"`
+	Name      string `json:"name"`
+	UserEmail string `json:"user_email"`
+	JoinTime  Time   `json:"join_time"`
+	LeaveTime Time   `json:"leave_time"`
+	Duration  int    `json:"duration"`
 }
 
 // ParticipantsOptions contains options for Participants.
 type ParticipantsOptions struct {
 	WebinarID     int    `url:"-"`
+	WebinarUUID   string `url:"-"`
 	PageSize      int    `json:"page_size"`
 	NextPageToken string `json:"next_page_token"`
 }
@@ -42,10 +46,18 @@ func Participants(opts ParticipantsOptions) (ParticipantsResponse, error) {
 // Participants calls /report/webinars/{webinarId}/participants,
 // listing all participants for the given webinar
 func (c *Client) Participants(opts ParticipantsOptions) (ParticipantsResponse, error) {
-	var ret = ParticipantsResponse{}
+	var (
+		ret  = ParticipantsResponse{}
+		path string
+	)
+	if len(opts.WebinarUUID) > 0 {
+		path = fmt.Sprintf(ParticipantReportPath, opts.WebinarUUID)
+	} else {
+		path = fmt.Sprintf(ParticipantReportPath, strconv.Itoa(opts.WebinarID))
+	}
 	return ret, c.requestV2(requestV2Opts{
 		Method:        Get,
-		Path:          fmt.Sprintf(ParticipantReportPath, opts.WebinarID),
+		Path:          path,
 		URLParameters: &opts,
 		Ret:           &ret,
 	})

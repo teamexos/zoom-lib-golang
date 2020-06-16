@@ -8,32 +8,34 @@ const (
 
 // WebinarMetric represents metrics for a particular webinar
 type WebinarMetric struct {
-	UUID             string
-	ID               int64
-	Topic            string
-	Host             string
-	Email            string
-	UserType         string
-	StartTime        string
-	EndTime          Time
-	Duration         string
-	Participants     int64
-	HasPSTN          bool
-	HasVOIP          bool
-	Has3rdPartyAudio bool
-	HasVideo         bool
-	HasScreenShare   bool
-	HasRecording     bool
-	HasSIP           bool
+	UUID             string `json:"uuid"`
+	ID               int64  `json:"id"`
+	Topic            string `json:"topic"`
+	Host             string `json:"host"`
+	Email            string `json:"email"`
+	Department       string `json:"dept"`
+	UserType         string `json:"user_type"`
+	StartTime        Time   `json:"start_time"`
+	EndTime          Time   `json:"end_time"`
+	Duration         string `json:"duration"`
+	Participants     int64  `json:"participants"`
+	HasPSTN          bool   `json:"has_pstn"`
+	HasVOIP          bool   `json:"has_voip"`
+	Has3rdPartyAudio bool   `json:"has_3rd_party_audio"`
+	HasVideo         bool   `json:"has_video"`
+	HasScreenShare   bool   `json:"has_screen_share"`
+	HasRecording     bool   `json:"has_recording"`
+	HasSIP           bool   `json:"has_sip"`
 }
 
 // WebinarsMetricsOptions contains options for WebinarMetrics.
+// url:"page_size,omitempty"
 type WebinarMetricsOptions struct {
-	Type          string `json:"type"`
-	From          string `json:"from"`
-	To            string `json:"to"`
-	PageSize      int    `json:"page_size"`
-	NextPageToken string `json:"next_page_token"`
+	Type          string `url:"type"`
+	From          string `url:"from"`
+	To            string `url:"to"`
+	PageSize      int    `url:"page_size,omitempty"`
+	NextPageToken string `url:"next_page_token,omitempty"`
 }
 
 // WebinarMetricsResponse represents the response from the API
