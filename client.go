@@ -56,18 +56,6 @@ func NewClient(apiKey string, apiSecret string) *Client {
 	}
 }
 
-// SetUpClient sets given parameters to the existing Client
-func (c *Client) SetUpClient(apiKey string, apiSecret string) {
-	var uri = url.URL{
-		Scheme: "https",
-		Host:   apiURI,
-		Path:   apiVersion,
-	}
-	c.Key = apiKey
-	c.Secret = apiSecret
-	c.endpoint = uri.String()
-}
-
 type requestV2Opts struct {
 	Client         *Client
 	Method         HTTPMethod
