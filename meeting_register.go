@@ -9,10 +9,11 @@ const (
 
 // MeetingRegistrant contains options for meeting registration
 type MeetingRegistrant struct {
-	MeetingID int    `json:"-" url:"-"`
-	Email     string `json:"email" url:"-"`
-	FirstName string `json:"first_name" url:"-"`
-	LastName  string `json:"last_name" url:"-"`
+	MeetingID     int    `json:"-" url:"-"`
+	Email         string `json:"email" url:"-"`
+	FirstName     string `json:"first_name" url:"-"`
+	LastName      string `json:"last_name" url:"-"`
+	OccurrenceIDs string `json:"-" url:"occurrence_ids,omitempty"`
 }
 
 // RegisterForMeetingResponse is the response object returned when registering for a meeting
