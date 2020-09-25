@@ -13,6 +13,8 @@ type MeetingRegistrant struct {
 	Email     string `json:"email" url:"-"`
 	FirstName string `json:"first_name" url:"-"`
 	LastName  string `json:"last_name" url:"-"`
+	// multiple values separated by comma
+	OccurrenceIDs string `json:"-" url:"occurrence_ids,omitempty"`
 }
 
 // RegisterForMeetingResponse is the response object returned when registering for a meeting
