@@ -156,6 +156,10 @@ func (c *Client) requestV2WithBody(opts requestV2Opts, resp *http.Response) erro
 		return err
 	}
 
+	if len(body) == 0 {
+		return nil
+	}
+
 	if Debug {
 		log.Printf("Response Body: %s", string(body))
 	}
