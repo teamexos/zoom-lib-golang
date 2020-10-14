@@ -43,18 +43,20 @@ type WebinarOccurrence struct {
 
 // ListWebinarsResponse contains the response from a call to ListWebinars
 type ListWebinarsResponse struct {
-	PageCount    int       `json:"page_count"`
-	TotalRecords int       `json:"total_records"`
-	PageNumber   int       `json:"page_number"`
-	PageSize     int       `json:"page_size"`
-	Webinars     []Webinar `json:"webinars"`
+	PageCount     int       `json:"page_count"`
+	TotalRecords  int       `json:"total_records"`
+	PageNumber    int       `json:"page_number"`
+	PageSize      int       `json:"page_size"`
+	NextPageToken string    `json:"next_page_token"`
+	Webinars      []Webinar `json:"webinars"`
 }
 
 // ListWebinarsOptions contains options for ListWebinars. Also accepts email address for HostID
 type ListWebinarsOptions struct {
-	HostID     string `url:"-"`
-	PageSize   *int   `url:"page_size,omitempty"`
-	PageNumber *int   `url:"page_number,omitempty"`
+	HostID        string `url:"-"`
+	PageSize      *int   `url:"page_size,omitempty"`
+	PageNumber    *int   `url:"page_number,omitempty"`
+	NextPageToken string `url:"next_page_token,omitempty"`
 }
 
 // ListWebinars calls /webinar/list, listing all webinars that don't require
