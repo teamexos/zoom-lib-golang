@@ -30,7 +30,7 @@ type (
 	MeetingRegistrantsStatus struct {
 		MeetingID     int                               `json:"-" url:"-"`
 		OccurrenceIDs string                            `json:"-" url:"occurrence_id,omitempty"`
-		Action        MeetingRegistrantStatusActionType `json:"action"`
+		Action        MeetingRegistrantStatusActionType `json:"action" url:"-"`
 		Registrants   []MeetingRegistrantDetails        `json:"registrants" url:"-"`
 	}
 )
