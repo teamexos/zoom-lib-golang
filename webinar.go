@@ -60,7 +60,7 @@ type ListWebinarsOptions struct {
 	NextPageToken string `url:"next_page_token,omitempty"`
 }
 
-// WebinarWebinarSettings represents webinar setting
+// WebinarWebinarSettings represents webinar settings
 type WebinarSettings struct {
 	AlternativeHosts string `json:"alternative_hosts,omitempty"`
 }
