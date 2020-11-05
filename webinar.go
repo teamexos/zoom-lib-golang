@@ -8,56 +8,70 @@ const (
 
 	// GetWebinarInfoPath - v2 path for retrieving info on a single webinar
 	GetWebinarInfoPath = "/webinars/%d"
+
+	// ListWebinarTypeScheduled is a webinar that is scheduled
+	ListWebinarTypeScheduled ListWebinarType = "scheduled"
+	// ListWebinarTypeLive is a live webinar
+	ListWebinarTypeLive ListWebinarType = "live" // DEFAULT
+	// ListWebinarTypeUpcoming is an upcoming webinar
+	ListWebinarTypeUpcoming ListWebinarType = "upcoming"
 )
 
-// Webinar represents a webinar object
-type Webinar struct {
-	UUID                      string              `json:"uuid"`
-	ID                        int                 `json:"id"`
-	StartURL                  string              `json:"start_url"`
-	JoinURL                   string              `json:"join_url"`
-	RegistrationURL           string              `json:"registration_url"`
-	CreatedAt                 *Time               `json:"created_at"`
-	HostID                    string              `json:"host_id"`
-	Topic                     string              `json:"topic"`
-	Type                      WebinarType         `json:"type"`
-	StartTime                 *Time               `json:"start_time"`
-	Duration                  int                 `json:"duration"`
-	Timezone                  string              `json:"timezone"`
-	Agenda                    string              `json:"agenda"`
-	OptionStartType           string              `json:"option_start_type"`
-	OptionAudio               string              `json:"option_audio"`
-	OptionEnforceLogin        bool                `json:"option_enforce_login"`
-	OptionEnforceLoginDomains string              `json:"option_enforce_login_domains"`
-	OptionAlternativeHosts    string              `json:"option_alternative_hosts"`
-	Status                    int                 `json:"status"`
-	Occurrences               []WebinarOccurrence `json:"occurrences"`
-}
+type (
 
-// WebinarOccurrence contains recurrence data for recurring webinars
-type WebinarOccurrence struct {
-	OccurrenceID string `json:"occurrence_id"`
-	StartTime    *Time  `json:"start_time"`
-	Duration     int    `json:"duration"`
-}
+	// ListWebinarType are the allowed webinar types
+	ListWebinarType string
 
-// ListWebinarsResponse contains the response from a call to ListWebinars
-type ListWebinarsResponse struct {
-	PageCount     int       `json:"page_count"`
-	TotalRecords  int       `json:"total_records"`
-	PageNumber    int       `json:"page_number"`
-	PageSize      int       `json:"page_size"`
-	NextPageToken string    `json:"next_page_token"`
-	Webinars      []Webinar `json:"webinars"`
-}
+	// Webinar represents a webinar object
+	Webinar struct {
+		UUID                      string              `json:"uuid"`
+		ID                        int                 `json:"id"`
+		StartURL                  string              `json:"start_url"`
+		JoinURL                   string              `json:"join_url"`
+		RegistrationURL           string              `json:"registration_url"`
+		CreatedAt                 *Time               `json:"created_at"`
+		HostID                    string              `json:"host_id"`
+		Topic                     string              `json:"topic"`
+		Type                      WebinarType         `json:"type"`
+		StartTime                 *Time               `json:"start_time"`
+		Duration                  int                 `json:"duration"`
+		Timezone                  string              `json:"timezone"`
+		Agenda                    string              `json:"agenda"`
+		OptionStartType           string              `json:"option_start_type"`
+		OptionAudio               string              `json:"option_audio"`
+		OptionEnforceLogin        bool                `json:"option_enforce_login"`
+		OptionEnforceLoginDomains string              `json:"option_enforce_login_domains"`
+		OptionAlternativeHosts    string              `json:"option_alternative_hosts"`
+		Status                    int                 `json:"status"`
+		Occurrences               []WebinarOccurrence `json:"occurrences"`
+	}
 
-// ListWebinarsOptions contains options for ListWebinars. Also accepts email address for HostID
-type ListWebinarsOptions struct {
-	HostID        string `url:"-"`
-	PageSize      *int   `url:"page_size,omitempty"`
-	PageNumber    *int   `url:"page_number,omitempty"`
-	NextPageToken string `url:"next_page_token,omitempty"`
-}
+	// WebinarOccurrence contains recurrence data for recurring webinars
+	WebinarOccurrence struct {
+		OccurrenceID string `json:"occurrence_id"`
+		StartTime    *Time  `json:"start_time"`
+		Duration     int    `json:"duration"`
+	}
+
+	// ListWebinarsResponse contains the response from a call to ListWebinars
+	ListWebinarsResponse struct {
+		PageCount     int       `json:"page_count"`
+		TotalRecords  int       `json:"total_records"`
+		PageNumber    int       `json:"page_number"`
+		PageSize      int       `json:"page_size"`
+		NextPageToken string    `json:"next_page_token"`
+		Webinars      []Webinar `json:"webinars"`
+	}
+
+	// ListWebinarsOptions contains options for ListWebinars. Also accepts email address for HostID
+	ListWebinarsOptions struct {
+		HostID        string          `url:"-"`
+		Type          ListWebinarType `url:"type,omitempty"`
+		PageSize      *int            `url:"page_size,omitempty"`
+		PageNumber    *int            `url:"page_number,omitempty"`
+		NextPageToken string          `url:"next_page_token,omitempty"`
+	}
+)
 
 // ListWebinars calls /webinar/list, listing all webinars that don't require
 // registration, using the default client
