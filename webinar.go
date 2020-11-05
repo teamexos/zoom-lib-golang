@@ -44,6 +44,7 @@ type (
 		OptionAlternativeHosts    string              `json:"option_alternative_hosts"`
 		Status                    int                 `json:"status"`
 		Occurrences               []WebinarOccurrence `json:"occurrences"`
+		Settings                  WebinarSettings     `json:"settings"`
 	}
 
 	// WebinarOccurrence contains recurrence data for recurring webinars
@@ -70,6 +71,11 @@ type (
 		PageSize      *int            `url:"page_size,omitempty"`
 		PageNumber    *int            `url:"page_number,omitempty"`
 		NextPageToken string          `url:"next_page_token,omitempty"`
+	}
+
+	// WebinarWebinarSettings represents webinar settings
+	WebinarSettings struct {
+		AlternativeHosts string `json:"alternative_hosts,omitempty"`
 	}
 )
 
