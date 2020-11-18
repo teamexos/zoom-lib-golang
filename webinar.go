@@ -52,6 +52,7 @@ type (
 		OccurrenceID string `json:"occurrence_id"`
 		StartTime    *Time  `json:"start_time"`
 		Duration     int    `json:"duration"`
+		Status       string `json:"status"`
 	}
 
 	// ListWebinarsResponse contains the response from a call to ListWebinars
