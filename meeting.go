@@ -136,11 +136,12 @@ type (
 		EncryptedPassword string        `json:"encrypted_password"`
 		// PMI is Personal Meeting ID. Only used for scheduled meetings and recurring meetings with
 		// no fixed time
-		PMI            int64           `json:"pmi"`
-		TrackingFields []TrackingField `json:"tracking_fields"`
-		Occurrences    []Occurrence    `json:"occurrences"`
-		Settings       MeetingSettings `json:"settings"`
-		Recurrence     Recurrence      `json:"recurrence"`
+		PMI             int64           `json:"pmi"`
+		TrackingFields  []TrackingField `json:"tracking_fields"`
+		Occurrences     []Occurrence    `json:"occurrences"`
+		Settings        MeetingSettings `json:"settings"`
+		Recurrence      Recurrence      `json:"recurrence"`
+		RegistrationURL string          `json:"registration_url"`
 	}
 
 	// TrackingField is a tracking field
