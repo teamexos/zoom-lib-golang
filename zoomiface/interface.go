@@ -10,6 +10,7 @@ type ClientAPI interface {
 	RegisterForWebinar(opts zoom.WebinarRegistrant) (zoom.RegisterForWebinarResponse, error)
 	UpdateRegistrantsStatus(opts zoom.MeetingRegistrantsStatus) error
 	UpdateWebinarRegistrantsStatus(opts zoom.WebinarRegistrantsStatus) error
+	ReportMeetingParticipants(opts zoom.ReportMeetingParticipantOptions) (zoom.ReportMeetingParticipantResponse, error)
 }
 
 // make sure zoom.Client type satisfies the ClientAPI interface
